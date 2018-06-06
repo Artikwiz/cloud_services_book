@@ -4,20 +4,17 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
 
 import { closeDrawer } from '../../actions/view';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import styles from './styles';
 
-const styles = {
-    list: {
-        width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
-};
-
-class LeftDrawer extends React.Component {
+class AppDrawer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -26,9 +23,20 @@ class LeftDrawer extends React.Component {
     render() {
         const sideList = (
             <div className={this.props.list}>
-                <List>{mailFolderListItems}</List>
-                <Divider />
-                <List>{otherMailFolderListItems}</List>
+                <List>
+                    <ListItem button component={Link} to="/">
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItem>
+                    <ListItem button component={Link} to="/about-us">
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="About" />
+                    </ListItem>
+                </List>
             </div>
         );
 
@@ -56,4 +64,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(LeftDrawer));
+export default connect(mapStateToProps)(withStyles(styles)(AppDrawer));

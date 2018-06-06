@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 
 import './App.css';
 
-import TopNavBar from './components/TopNavBar/TopNavBar';
-import LeftDrawer from './components/LeftDrawer/index';
+import TopAppBar from '../components/TopAppBar/index';
+import AppDrawer from '../components/AppDrawer/index';
+import MainContent from '../components/MainContent/index';
 
 class App extends Component {
   render() {
@@ -18,12 +19,14 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p> */}
-        <TopNavBar />
-        <LeftDrawer />
+        <TopAppBar />
+        <AppDrawer />
+        <MainContent />
         {/* <TopNavBar /> */}
       </div>
     );
   }
 }
 
-export default connect()(App);
+export default App;
+// export default connect()(App);

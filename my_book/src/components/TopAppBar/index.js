@@ -7,28 +7,29 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 
-import styles from './styles.css';
+import styles from './styles.js';
 
 import { openDrawer } from '../../actions/view';
 
-class TopNavBar extends Component {
+class TopAppBar extends Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
-            <div className={this.props.root}>
-                <AppBar position="static" style={{ backgroundColor: '#2196f3' }}>
+            <div className={classes.root}>
+                <AppBar position="static" className={classes.appBar}>
                     <Toolbar>
-                        <IconButton className={this.props.menuButton}
+                        <IconButton className={classes.menuButton}
                             color="inherit"
                             onClick={() => { this.props.dispatch(openDrawer()); }}
                             aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="title" color="inherit" className={this.props.flex}>Title</Typography>
                     </Toolbar>
                 </AppBar>
             </div >
@@ -42,4 +43,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(TopNavBar));
+export default connect(mapStateToProps)(withStyles(styles)(TopAppBar));
