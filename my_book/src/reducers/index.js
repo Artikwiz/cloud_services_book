@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import view from './view';
+import drawer from './drawer';
 
 const appReducer = combineReducers({
-    view,
+    drawer,
     router: routerReducer,
 });
 

@@ -10,7 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 
-import { closeDrawer } from '../../actions/view';
+import { closeDrawer } from '../../actions/drawer';
 import { mailFolderListItems, otherMailFolderListItems } from './tileData';
 import styles from './styles';
 
@@ -60,7 +60,7 @@ class AppDrawer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        open_drawer: state.view.drawer_open,
+        open_drawer: state.drawer.drawer_open,
     };
 };
 

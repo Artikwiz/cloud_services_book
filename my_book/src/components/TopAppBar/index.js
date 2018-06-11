@@ -9,7 +9,9 @@ import { connect } from 'react-redux';
 
 import styles from './styles.js';
 
-import { openDrawer } from '../../actions/view';
+import searchBarData from './searchBarData';
+import AutoSuggestSearchBar from '../AutoSuggestSearchBar/index';
+import { openDrawer } from '../../actions/drawer';
 
 class TopAppBar extends Component {
     constructor(props) {
@@ -30,6 +32,7 @@ class TopAppBar extends Component {
                             aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
+                        <AutoSuggestSearchBar />
                     </Toolbar>
                 </AppBar>
             </div >
@@ -39,7 +42,7 @@ class TopAppBar extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        open_drawer: state.view.drawer_open,
+        open_drawer: state.drawer.drawer_open,
     };
 };
 

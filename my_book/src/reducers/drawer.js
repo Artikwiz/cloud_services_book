@@ -1,4 +1,4 @@
-import { OPEN_DRAWER, CLOSE_DRAWER } from '../actions/view';
+import { OPEN_DRAWER, CLOSE_DRAWER } from '../actions/drawer';
 
 const defaultState = {
     drawer_open: false,
