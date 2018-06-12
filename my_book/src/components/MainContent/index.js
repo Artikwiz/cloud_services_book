@@ -1,24 +1,41 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from '../../containers/Home';
 import About from '../../containers/About';
+
+function build(key) {
+    switch (key) {
+        case 'About':
+            return About;
+        default:
+            return Home;
+    }
+}
 
 class MainContent extends Component {
     constructor(props) {
         super(props);
         this.state = {}
     }
+
+
     render() {
+        const { activeRoot } = this.props;
         return (
             <main>
                 <Switch>
-                    <Route exact path='/' component={Home} />
-                    <Route exact path='/about-us' component={About} />
+                    <Route exact path={activeRoot.pathname}
+                        component={build(activeRoot.label)} />
                 </Switch>
             </main>
         )
     }
+}
+
+MainContent.propTypes = {
+    activeRoot: PropTypes.object,
 }
 
 export default MainContent;

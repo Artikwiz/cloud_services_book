@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+
+import styles from './styles';
+
+import AppContent from '../../components/AppContent/index';
 
 class About extends Component {
     constructor(props) {
@@ -7,11 +13,15 @@ class About extends Component {
     }
     render() {
         return (
-            <div>
+            <AppContent className={this.props.classes.root}>
                 <h1>About</h1>
-            </div>
+            </AppContent>
         )
     }
 }
 
-export default About;
+About.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(About);
