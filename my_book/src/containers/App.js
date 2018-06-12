@@ -30,21 +30,28 @@ class App extends Component {
     });
   };
 
-  handleClickItem = (label, pathname) => {
+  handleDrawerClickItem = (label, pathname) => {
     this.props.dispatch(changeRoot(label, pathname));
     this.props.dispatch(push(pathname));
     this.handleCloseDrawer();
   };
 
+  handleSearchBarItemSelected = (label, pathname) => {
+    this.props.dispatch(changeRoot(label, pathname));
+    this.props.dispatch(push(pathname));
+  };
+
+  handle
   render() {
     const { navigation } = this.props;
     return (
       <div className="App">
         <TopAppBar onClickDrawerButton={this.handleOpenDrawer}
+          onSearchBarItemSelected={this.handleSearchBarItemSelected}
           roots={navigation.roots} />
         <AppDrawer open={this.state.drawer_open}
           roots={navigation.roots}
-          onClickItem={this.handleClickItem}
+          onClickItem={this.handleDrawerClickItem}
           onClick={this.handleCloseDrawer} />
         <MainContent activeRoot={navigation.activeRoot} />
       </div>

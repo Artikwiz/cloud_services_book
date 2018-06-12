@@ -4,13 +4,11 @@ import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import styles from './styles.js';
 
 import AutoSuggestSearchBar from '../AutoSuggestSearchBar/index';
-import { openDrawer } from '../../actions/drawer';
 
 class TopAppBar extends Component {
     constructor(props) {
@@ -24,7 +22,7 @@ class TopAppBar extends Component {
     }
 
     render() {
-        const { classes, roots, onClickDrawerButton } = this.props;
+        const { classes, roots, onSearchBarItemSelected } = this.props;
 
         return (
             <div className={classes.root}>
@@ -36,7 +34,8 @@ class TopAppBar extends Component {
                             aria-label="Menu">
                             <MenuIcon />
                         </IconButton>
-                        <AutoSuggestSearchBar />
+                        <AutoSuggestSearchBar suggestions={roots}
+                            onItemSelected={onSearchBarItemSelected} />
                     </Toolbar>
                 </AppBar>
             </div >
@@ -47,6 +46,7 @@ class TopAppBar extends Component {
 TopAppBar.propTypes = {
     roots: PropTypes.array.isRequired,
     onClickDrawerButton: PropTypes.func.isRequired,
+    onSearchBarItemSelected: PropTypes.func,
 }
 
 export default withStyles(styles)(TopAppBar);

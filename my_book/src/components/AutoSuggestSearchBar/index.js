@@ -12,7 +12,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
 import SearchBar from '../SearchBar/index';
-import suggestions from './suggestions';
+// import suggestions from './suggestions';
 
 function renderSuggestion(suggestion, { query, isHighlighted }) {
     const matches = match(suggestion.label, query);
@@ -47,11 +47,8 @@ function renderSuggestionsContainer(options) {
     );
 }
 
-function getSuggestionValue(suggestion) {
-    return suggestion.label;
-}
 
-function getSuggestions(value) {
+function getSuggestions(suggestions, value) {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
     let count = 0;
@@ -80,9 +77,13 @@ class AutoSuggestSearchBar extends Component {
         };
     }
 
+    getSuggestionValue(suggestion) {
+        return suggestion.label;
+    }
+
     handleSuggestionsFetchRequested = ({ value }) => {
         this.setState({
-            suggestions: getSuggestions(value),
+            suggestions: getSuggestions(this.props.suggestions, value),
         });
     };
 
@@ -104,6 +105,11 @@ class AutoSuggestSearchBar extends Component {
         });
     };
 
+    handleSuggestionSelected = (event, { suggestion }) => {
+        console.log("Value = " + suggestion.label);
+        this.props.onItemSelected(suggestion.label, suggestion.pathname);
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -120,7 +126,8 @@ class AutoSuggestSearchBar extends Component {
                 onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
                 onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
                 renderSuggestionsContainer={renderSuggestionsContainer}
-                getSuggestionValue={getSuggestionValue}
+                getSuggestionValue={this.getSuggestionValue}
+                onSuggestionSelected={this.handleSuggestionSelected}
                 renderSuggestion={renderSuggestion}
                 inputProps={{
                     classes,
@@ -138,6 +145,8 @@ class AutoSuggestSearchBar extends Component {
 
 AutoSuggestSearchBar.propTypes = {
     classes: PropTypes.object.isRequired,
+    suggestions: PropTypes.array.isRequired,
+    onItemSelected: PropTypes.func,
 };
 
 export default withStyles(styles)(AutoSuggestSearchBar);
