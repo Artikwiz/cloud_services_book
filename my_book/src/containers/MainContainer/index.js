@@ -14,7 +14,7 @@ function build(key) {
     }
 }
 
-class MainContent extends Component {
+class MainContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -34,8 +34,8 @@ class MainContent extends Component {
     }
 }
 
-MainContent.propTypes = {
+MainContainer.propTypes = {
     activeRoot: PropTypes.object,
 }
 
-export default MainContent;
+export default MainContainer;

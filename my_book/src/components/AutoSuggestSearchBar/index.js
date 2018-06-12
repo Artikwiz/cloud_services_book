@@ -12,7 +12,6 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 
 import SearchBar from '../SearchBar/index';
-// import suggestions from './suggestions';
 
 function renderSuggestion(suggestion, { query, isHighlighted }) {
     const matches = match(suggestion.label, query);
@@ -106,7 +105,6 @@ class AutoSuggestSearchBar extends Component {
     };
 
     handleSuggestionSelected = (event, { suggestion }) => {
-        console.log("Value = " + suggestion.label);
         this.props.onItemSelected(suggestion.label, suggestion.pathname);
     }
 
